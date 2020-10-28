@@ -1,8 +1,10 @@
 // Function to create UI card new Entry
-const newEntry = (texto) => {
+const newEntry = async (data) => {
+    const ctToDo = document.getElementById("ct-ToDo");
     
-    alert("try");
-    console.log(texto);
+    let taskCard = document.createElement('div');
+    taskCard.innerHTML = `\<input type=\"checkbox\"\> ${data.task}`;
+    ctToDo.insertAdjacentElement("beforeend", taskCard);
 };
 
 // Function to POST newEntry
@@ -42,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                   })
         .then(data => {
             console.log(data);
+            newEntry(data);
         })
         
         //turn back to default value at new Task entries
