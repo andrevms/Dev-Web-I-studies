@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
             
         //post newEntry on server
+        let taskDay = document.getElementById("newtaskfinishDate");
         postNewEntry('/newEntry', { task: document.getElementById("newtaskName").value,
-                                    day: document.getElementById("newtaskfinishDate").value
+                                    day: (taskDay.value == null) ? new Date.now() : taskDay.value
                                   })
         .then(data => {
             console.log(data);
