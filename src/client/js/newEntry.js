@@ -36,15 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
             
         //post newEntry on server
-            //TODO change t for new entry data
-        postNewEntry('/newEntry', {t:'testando'})
+        postNewEntry('/newEntry', { task: document.getElementById("newtaskName").value,
+                                    day: document.getElementById("newtaskfinishDate").value
+                                  })
         .then(data => {
-            console.log(data + "estamos aqui");
+            console.log(data);
         })
         
         //turn back to default value at new Task entries
         document.getElementById("newtaskName").value = "";
-        newEntry('foi');
+        document.getElementById("newtaskfinishDate").value = "";
     });
 });
 

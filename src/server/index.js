@@ -36,11 +36,12 @@ app.listen(3000, () => {
 app.post('/newEntry', postEntry);
 
 function postEntry(req, res) {
-    
+
     //TODO change parameters for new entry data
   let newEntry = {
-    t: req.body.t
-  }
+    task: req.body.task,
+    day: req.body.day
+  } 
 
   //projectData.push(newEntry);
   res.send(newEntry);
