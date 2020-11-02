@@ -1,10 +1,40 @@
 // Function to create UI card new Entry
 const newEntry = async (data) => {
-    const ctToDo = document.getElementById("ct-ToDo");
-    
-    let taskCard = document.createElement('div');
-    taskCard.innerHTML = `\<input type=\"checkbox\"\> ${data.task}`;
-    ctToDo.insertAdjacentElement("beforeend", taskCard);
+  const ctToDo = document.getElementById('ct-ToDo');  
+  
+  //Card container
+  let taskCard = document.createElement('div');
+
+  //creating input checkbox
+  const inputCheckBox = document.createElement('input');
+  inputCheckBox.setAttribute("type","checkbox");
+  inputCheckBox.setAttribute("class","checkTask");
+
+  //adding input checkbox to Card Container
+  taskCard.appendChild(inputCheckBox);
+  //adding task name
+  taskCard.appendChild(document.createTextNode(`${data.task}`));
+
+  //create button to delete
+  const delButton = document.createElement('button');
+  delButton.setAttribute("class","fal fa-trash");
+  taskCard.appendChild(delButton);
+
+  //insert at end of to do list
+  ctToDo.insertAdjacentElement("beforeend", taskCard);
+
+  //add Event Listener  
+  inputCheckBox.addEventListener("click", (e) => { 
+    //If clicked checkBox --> Move to a ct
+    const cardTask = inputCheckBox.parentNode; 
+    cardTask.remove();
+    if(inputCheckBox.checked){
+      document.getElementById("ct-Finish").insertAdjacentElement("beforeend", cardTask);
+    } else {
+      document.getElementById("ct-ToDo").insertAdjacentElement("beforeend", cardTask);
+    }
+   
+  });
 };
 
 // Function to POST newEntry
@@ -34,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //Event Listeners Here
     
     entry.addEventListener("submit", async(e) => {
+      /*
+        Event listener for submit new entry
+      */
         //prevent page reaload
         e.preventDefault();
             
@@ -51,6 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("newtaskName").value = "";
         document.getElementById("newtaskfinishDate").value = "";
     });
+
 });
 
-export { newEntry, postNewEntry}
+const deleteCard = async(e) => {
+  console.log(e);
+};
+
+export { newEntry, postNewEntry, deleteCard}

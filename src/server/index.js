@@ -37,7 +37,7 @@ app.post('/newEntry', postEntry);
 
 function postEntry(req, res) {
 
-    //TODO change parameters for new entry data
+    //TODO save entry at somewhere
   let newEntry = {
     task: req.body.task,
     day: req.body.day

@@ -4,6 +4,7 @@
   "description": "To do List",
   "main": "webpack.config.js",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "express": "^4.17.1",
     "express-async-await": "^1.1.0",
     "node-fetch": "^2.6.1",

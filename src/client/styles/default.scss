@@ -4,8 +4,27 @@ body {
     padding: 0;
     margin: 0;
 
-
     background: url('/src/client/images/wattle-tree-5358904_1920.jpg') no-repeat center;
     background-size: cover;
     color: #41463D;
+
+    display: grid;
+    grid-template-rows: 96vh 4vh;
+
+}
+
+main {
+    display: grid;
+    grid-template-rows: 80vh 10vh;
+}
+
+#ct-newEntry {
+    padding: 1vh 1vw;
+    input {
+        border: none;
+    }
+
+    #newtaskName {
+        width: 80vw;
+    }
 }
