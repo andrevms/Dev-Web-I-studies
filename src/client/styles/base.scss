@@ -1,0 +1,103 @@
+body{
+    //removing margin and padding to take all view
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    
+    /*
+        Todo: Make possible change background and font color with JS
+    */
+    background: url('../images/wattle-tree-5358904_1920.jpg') no-repeat center;
+    background-size: cover;
+    color: #41463D;
+    
+    @media only screen and (min-width: 900px) {
+        display: grid;
+        grid-template-areas:"nav-desktop mobile";
+        grid-template-columns: 10vw 90vw;
+        grid-template-rows: 100vh;
+    }
+}
+
+#ct-mobile {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    display: grid;
+    grid-template-areas:"main"
+                        "entry";
+    grid-template-rows: 92% 5%;
+    
+    @media only screen and (min-width: 450px) {
+        grid-template-rows: 92% 8%;
+    }
+
+    @media only screen and (min-width: 900px) {
+        grid-area: mobile;
+    }
+}
+
+nav{
+    grid-area: nav-desktop;
+    background-color:#41463D;
+    opacity: 0.8;
+}
+
+main {
+    grid-area: main;
+    padding: 1%;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+    row-gap: 1%;
+
+    header {
+        color:#41463D;
+    }
+    #ct-tasks{
+        overflow-y: auto;
+    }
+}
+
+
+#ct-newEntry {
+    padding: 1%;
+    grid-area: entry;
+}
+
+.cardTask {
+    height: 95%;
+    background-color: #41463D;
+    border-radius: 0.33em;
+    display: grid;
+    grid-template-columns: 2em 1fr;
+    column-gap: 0.5em;
+    
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+#newtaskName {
+    border: none;
+    background: none;
+
+    &:focus {
+        border: none;
+        box-shadow: 0 0 0 0;
+        outline: 0;
+
+        color: white;
+    }
+}
+
+.iColor {
+    color: white;
+}
+
+// telas maiores de 450/450

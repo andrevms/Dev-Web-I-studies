@@ -8,13 +8,13 @@ const express = require('express')
 const app = express();
 
 /* Dependencies */
-var path = require('path')
+const path = require('path')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { url } = require('inspector');
 const { Console } = require('console');
-var async  = require('express-async-await')
-var fetch = require('node-fetch');
+const async  = require('express-async-await')
+const fetch = require('node-fetch');
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.

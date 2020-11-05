@@ -3,7 +3,7 @@ const newEntry = async (data) => {
   const ctToDo = document.getElementById('ct-ToDo');  
   
   //Card container
-  let taskCard = document.createElement('div');
+  const taskCard = document.createElement('div');
 
   //creating input checkbox
   const inputCheckBox = document.createElement('input');
@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
             
         //post newEntry on server
-        let taskDay = document.getElementById("newtaskfinishDate");
+        //let taskDay = document.getElementById("newtaskfinishDate");
         postNewEntry('/newEntry', { task: document.getElementById("newtaskName").value,
-                                    day: (taskDay.value == null) ? new Date.now() : taskDay.value
+                                   // day: (taskDay.value == null) ? new Date.now() : taskDay.value
                                   })
         .then(data => {
             console.log(data);
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         //turn back to default value at new Task entries
         document.getElementById("newtaskName").value = "";
-        document.getElementById("newtaskfinishDate").value = "";
+       // document.getElementById("newtaskfinishDate").value = "";
     });
 
 });

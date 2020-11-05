@@ -3,27 +3,29 @@
     <head>
     </head>
     <body>
-        <main>
-            <div id="ct-tasks">
-                <section id="ct-ToDo">
-                
-                </section>
-                <section id="ct-Finish">
-                    <span>Finish</span>
-                </section>
-            </div>
+        <nav></nav>
+        <div id="ct-mobile">
+            <main>
+                <header>
+                    <h2>Meu Dia</h2>
+                    <p id="dayDisplay"></p>
+                </header>
+                <div id="ct-tasks">
+                    <section id="ct-ToDo">
+                    </section>
+                    <section id="ct-Finish">
+                    </section>
+                </div>
+            </main>
             <form id="ct-newEntry">
-                <input type="checkbox" disabled>
-
-                <label for="taskName"></label>
-                <input type="text" name="newtaskName" id="newtaskName" placeholder="Task" required>
-
-                <label for="finish-date"></label>
-                <input type="date" id="newtaskfinishDate">
-                
-                <input style ="display: none" id="submitNewTask"type="submit" value="submit">
-            </form>  
-        </main>
-        <footer>Copyright © 2020 | Andre Soares</footer>
+                <div class="cardTask" id="newEntry">
+                    <div id="">
+                        <i class="fas fa-plus fa-lg iColor"></i>
+                    </div>
+                    <input type="text" name="newtaskName" id="newtaskName" placeholder="Add a new Task" required>
+                    <input style="display:none" type="submit">
+                </div>
+            </form>
+        </div>
     </body>
 </html>
