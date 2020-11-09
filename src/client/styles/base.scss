@@ -10,12 +10,12 @@ body{
     */
     background: url('../images/wattle-tree-5358904_1920.jpg') no-repeat center;
     background-size: cover;
-    color: #41463D;
+    color: white;
     
     @media only screen and (min-width: 900px) {
         display: grid;
-        grid-template-areas:"nav-desktop mobile";
-        grid-template-columns: 10vw 90vw;
+        grid-template-areas:"nav-desktop mobile info";
+        grid-template-columns: 10vw 75vw 15vw;
         grid-template-rows: 100vh;
     }
 }
@@ -46,6 +46,12 @@ nav{
     opacity: 0.8;
 }
 
+.infoCards{
+    grid-area: info;
+    background-color:#41463D;
+    opacity: 0.8;
+}
+
 main {
     grid-area: main;
     padding: 1%;
@@ -57,11 +63,18 @@ main {
     header {
         color:#41463D;
     }
+
     #ct-tasks{
         overflow-y: auto;
     }
 }
 
+.card {
+    height: 3vh;
+    @media only screen and (min-width: 450px) {
+        height: 6vh;
+    }
+}
 
 #ct-newEntry {
     padding: 1%;

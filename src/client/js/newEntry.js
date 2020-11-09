@@ -3,35 +3,38 @@ const newEntry = async (data) => {
   const ctToDo = document.getElementById('ct-ToDo');  
   
   //Card container
+  const containerCard = document.createElement('div');
+  containerCard.setAttribute("class","card");
+  
   const taskCard = document.createElement('div');
+  taskCard.setAttribute("class","cardTask");
 
-  //creating input checkbox
-  const inputCheckBox = document.createElement('input');
-  inputCheckBox.setAttribute("type","checkbox");
-  inputCheckBox.setAttribute("class","checkTask");
-
+  const ctIcon = document.createElement('div');
+  const icon = document.createElement('i');
+  icon.setAttribute("class","far fa-circle fa-lg iColor")
+  ctIcon.appendChild(icon);
+  
   //adding input checkbox to Card Container
-  taskCard.appendChild(inputCheckBox);
+  taskCard.appendChild(ctIcon);
   //adding task name
   taskCard.appendChild(document.createTextNode(`${data.task}`));
 
-  //create button to delete
-  const delButton = document.createElement('button');
-  delButton.setAttribute("class","fal fa-trash");
-  taskCard.appendChild(delButton);
+  containerCard.appendChild(taskCard);
 
   //insert at end of to do list
-  ctToDo.insertAdjacentElement("beforeend", taskCard);
+  ctToDo.insertAdjacentElement("beforeend", containerCard);
 
   //add Event Listener  
-  inputCheckBox.addEventListener("click", (e) => { 
+  ctIcon.addEventListener("click", (e) => { 
     //If clicked checkBox --> Move to a ct
-    const cardTask = inputCheckBox.parentNode; 
-    cardTask.remove();
-    if(inputCheckBox.checked){
-      document.getElementById("ct-Finish").insertAdjacentElement("beforeend", cardTask);
+    const ctCard = ctIcon.parentNode.parentNode; 
+    ctCard.remove();
+    if(ctIcon.classList.contains("finish")){
+      ctIcon.removeAttribute("class");
+      document.getElementById("ct-ToDo").insertAdjacentElement("beforeend", ctCard);
     } else {
-      document.getElementById("ct-ToDo").insertAdjacentElement("beforeend", cardTask);
+      ctIcon.classList.add("finish");
+      document.getElementById("ct-Finish").insertAdjacentElement("beforeend", ctCard);
     }
    
   });
