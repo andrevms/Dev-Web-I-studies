@@ -14,6 +14,9 @@
     }
 
     #container-tasks{
+        display: grid;
+        row-gap: 0.15em;
+        
         overflow-y: auto;
         border: 1px solid red;
         /* width */

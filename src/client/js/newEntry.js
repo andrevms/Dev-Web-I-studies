@@ -21,8 +21,8 @@ const newEntry = async (data) => {
   containerCard.appendChild(taskCard);
 
   //insert at end of to do list
-  const containerTasks = document.getElementById('container-finish');
-  containerTasks.insertAdjacentElement("beforebegin", containerCard);
+  const finishTag = document.getElementById('finish-tag');
+  finishTag.insertAdjacentElement("beforebegin", containerCard);
 
   //add Event Listener  
   iconClickListener(ctIcon);
@@ -85,17 +85,27 @@ function iconClickListener(el) {
     ctCard.remove();
 
     if(el.classList.contains("finish")){
-      //removing from finish tasks
+      
+      //remove attr class "finish" 
       el.removeAttribute("class");
+
+      //change icon for circle
       el.firstChild.removeAttribute("class");
       el.firstChild.setAttribute("class","far fa-circle fa-lg");
-      document.getElementById('container-finish').insertAdjacentElement("beforebegin", ctCard);
+      
+      //move for beforebegin finishTag 
+      document.getElementById('finish-tag').insertAdjacentElement("beforebegin", ctCard);
     } else {
-      //moving to finish tasks
+
+      //add attr class "finish"
       el.classList.add("finish");
+
+      //change icon for checked circle
       el.firstChild.removeAttribute("class");
       el.firstChild.setAttribute("class","far fa-check-circle fa-lg");
-      document.getElementById('finish-tasks').insertAdjacentElement("beforeend", ctCard);
+      
+      //move to beforeend container-task
+      document.getElementById('container-tasks').insertAdjacentElement("beforeend", ctCard);
     }
   });
 }
