@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#main-content {
+    grid-area: content_area;
+    display: grid;
+    grid-template-rows: fit-content(100%) fit-content(75vh);
+
+    #content-header {
+        color: black;
+    }
+
+    #container-tasks{
+        overflow-y: auto;
+        border: 1px solid red;
+        /* width */
+        
+        &::-webkit-scrollbar {
+            width: 0.25em;
+        }
+        
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #888; 
+        }
+        
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+
+    }
+
+    @media only screen and (min-width: 900px) {
+        grid-template-rows: fit-content(100%) fit-content(80vh);
+    }
+
+}
+
+#container-new-entry {
+    grid-area: entry_area;
+
+    display: flex;
+    align-items: center;
+}

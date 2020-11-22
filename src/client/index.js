@@ -1,5 +1,8 @@
 //css
 import './styles/base.scss'
+import './styles/main.scss'
+import './styles/cardTasks.scss'
+
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
 import '@fortawesome/fontawesome-free/js/regular'
@@ -9,9 +12,9 @@ import '@fortawesome/fontawesome-free/js/brands'
 import backgroundPhoto from './images/wattle-tree-5358904_1920.jpg'
 
 //js
-import { newEntry, postNewEntry } from './js/newEntry'
+import { newEntry, postNewEntry} from './js/newEntry'
 
 export {
     newEntry,
-    postNewEntry
+    postNewEntry,
 }

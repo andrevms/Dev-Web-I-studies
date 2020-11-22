@@ -1,17 +1,16 @@
 // Function to create UI card new Entry
 const newEntry = async (data) => {
-  const ctToDo = document.getElementById('ct-ToDo');  
-  
   //Card container
   const containerCard = document.createElement('div');
-  containerCard.setAttribute("class","card");
+  containerCard.setAttribute("class","container-card card-Task");
   
   const taskCard = document.createElement('div');
-  taskCard.setAttribute("class","cardTask");
+  taskCard.setAttribute("class","content-layout-card");
+
 
   const ctIcon = document.createElement('div');
   const icon = document.createElement('i');
-  icon.setAttribute("class","far fa-circle fa-lg iColor")
+  icon.setAttribute("class","far fa-circle fa-lg")
   ctIcon.appendChild(icon);
   
   //adding input checkbox to Card Container
@@ -22,22 +21,11 @@ const newEntry = async (data) => {
   containerCard.appendChild(taskCard);
 
   //insert at end of to do list
-  ctToDo.insertAdjacentElement("beforeend", containerCard);
+  const containerTasks = document.getElementById('container-finish');
+  containerTasks.insertAdjacentElement("beforebegin", containerCard);
 
   //add Event Listener  
-  ctIcon.addEventListener("click", (e) => { 
-    //If clicked checkBox --> Move to a ct
-    const ctCard = ctIcon.parentNode.parentNode; 
-    ctCard.remove();
-    if(ctIcon.classList.contains("finish")){
-      ctIcon.removeAttribute("class");
-      document.getElementById("ct-ToDo").insertAdjacentElement("beforeend", ctCard);
-    } else {
-      ctIcon.classList.add("finish");
-      document.getElementById("ct-Finish").insertAdjacentElement("beforeend", ctCard);
-    }
-   
-  });
+  iconClickListener(ctIcon);
 };
 
 // Function to POST newEntry
@@ -61,11 +49,11 @@ const postNewEntry = async (url = '', data = {}) => {
 };
 
 //Event Listener
-document.addEventListener('DOMContentLoaded', () => {
-    const entry = document.getElementById("ct-newEntry");
+document.addEventListener('DOMContentLoaded', () => {    
+    const entry = document.getElementById("container-new-entry");
 
     //Event Listeners Here
-    
+ 
     entry.addEventListener("submit", async(e) => {
       /*
         Event listener for submit new entry
@@ -74,24 +62,42 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
             
         //post newEntry on server
-        //let taskDay = document.getElementById("newtaskfinishDate");
-        postNewEntry('/newEntry', { task: document.getElementById("newtaskName").value,
-                                   // day: (taskDay.value == null) ? new Date.now() : taskDay.value
-                                  })
+        postNewEntry('/newEntry', { task: document.getElementById("input-task-entry").value})
         .then(data => {
             console.log(data);
             newEntry(data);
         })
         
         //turn back to default value at new Task entries
-        document.getElementById("newtaskName").value = "";
-       // document.getElementById("newtaskfinishDate").value = "";
+        document.getElementById("input-task-entry").value = "";
     });
-
 });
 
 const deleteCard = async(e) => {
   console.log(e);
 };
 
-export { newEntry, postNewEntry, deleteCard}
+function iconClickListener(el) {
+  el.addEventListener("click", (e) => {
+    
+    //If clicked checkBox --> Move to a ct
+    const ctCard = el.parentNode.parentNode; 
+    ctCard.remove();
+
+    if(el.classList.contains("finish")){
+      //removing from finish tasks
+      el.removeAttribute("class");
+      el.firstChild.removeAttribute("class");
+      el.firstChild.setAttribute("class","far fa-circle fa-lg");
+      document.getElementById('container-finish').insertAdjacentElement("beforebegin", ctCard);
+    } else {
+      //moving to finish tasks
+      el.classList.add("finish");
+      el.firstChild.removeAttribute("class");
+      el.firstChild.setAttribute("class","far fa-check-circle fa-lg");
+      document.getElementById('finish-tasks').insertAdjacentElement("beforeend", ctCard);
+    }
+  });
+}
+
+export { newEntry, postNewEntry, deleteCard }

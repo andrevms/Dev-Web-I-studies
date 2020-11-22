@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <nav></nav>
-        <div id="ct-mobile">
-            <main>
-                <header>
-                    <h2>Meu Dia</h2>
-                    <p id="dayDisplay"></p>
-                </header>
-                <div id="ct-tasks">
-                    <section id="ct-ToDo">
-                    </section>
-                    <section id="ct-Finish">
-                        finish
-                    </section>
-                </div>
-            </main>
-            <form id="ct-newEntry">
-                <div class="cardTask" id="newEntry">
-                    <div id="">
-                        <i class="fas fa-plus fa-lg iColor"></i>
+        <main id="web-view">
+            <nav>
+
+            </nav>
+            <article id="mobile-view">
+                <main id="main-content">
+                    <hgroup id="content-header">
+                        <button><i class= "fa-plus fa-lg"></i></button>
+                        <h2>Meu Dia</h2>
+                        <h4 id="dayDisplay">Segunda-feira</h4>
+                    </hgroup>
+                    <article id="container-tasks">
+                        <div id="container-finish">
+                            <div id="finish-tag">Finish</div>
+                            <div id="finish-tasks"></div>
+                        </div>
+                    </article>
+                </main>
+
+                <form id="container-new-entry" class="card-Task">
+                    <div id="new-Entry">
+                        <i class="fas fa-plus fa-lg"></i>
+                        <input type="text" name="newtaskName" id="input-task-entry" placeholder="Add a new Task" required>
+                        <input style="display:none" type="submit">
                     </div>
-                    <input type="text" name="newtaskName" id="newtaskName" placeholder="Add a new Task" required>
-                    <input style="display:none" type="submit">
-                </div>
-            </form>
-        </div>
-        <div class="infoCards"></div>
+                </form>
+            </article>
+        </main>
+        <article class="infoCards"></article>
     </body>
 </html>

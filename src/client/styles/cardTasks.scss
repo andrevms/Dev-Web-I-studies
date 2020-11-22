@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container-card {
+    height: 6vh;
+
+    display: flex;
+    align-items: center;
+
+    @media only screen and (min-width: 450px) {
+        height: 5vh;
+    }
+}
+
+.card-Task {
+    width: 100%;
+    background-color: #41463D;
+    border-radius: 0.33em;
+
+    //div {
+     //   border: 1px solid red;
+   // }
+}
+
+.content-layout-card {
+    width: 100%;
+    padding-left: 1.5%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.5%;
+}
+
+#new-Entry {
+    width: 100%;
+    padding-left: 1.5%;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.5%;
+
+    i{
+        display:block;
+    }
+
+    #input-task-entry {
+        border: none;
+        background: none;
+    
+        &:focus {
+            border: none;
+            box-shadow: 0 0 0 0;
+            outline: 0;
+    
+            color: white;
+        }
+    }
+}

@@ -1,45 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body{
     //removing margin and padding to take all view
     height: 100vh;
     width: 100vw;
     margin: 0;
-    padding: 0;
-    
-    /*
-        Todo: Make possible change background and font color with JS
-    */
+    padding: 0;   
+
+    display: grid;
+    grid-template-areas: "mobile";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+#web-view {
     background: url('../images/wattle-tree-5358904_1920.jpg') no-repeat center;
     background-size: cover;
     color: white;
-    
-    @media only screen and (min-width: 900px) {
-        display: grid;
-        grid-template-areas:"nav-desktop mobile info";
-        grid-template-columns: 10vw 75vw 15vw;
-        grid-template-rows: 100vh;
-    }
 }
 
-#ct-mobile {
+#mobile-view {
     height: 100%;
     width: 100%;
+    padding: 1%;
     margin: 0;
-    padding: 0;
+    
+    grid-area: mobile;
     
     display: grid;
-    grid-template-areas:"main"
-                        "entry";
-    grid-template-rows: 92% 5%;
-    
-    @media only screen and (min-width: 450px) {
-        grid-template-rows: 92% 8%;
-    }
+    row-gap: 1%;
+    grid-template-areas:"content_area"
+                        "entry_area";
+    grid-template-rows: 93% 6%;
+    /*91% because of row-gap is 1%*/
 
     @media only screen and (min-width: 900px) {
-        grid-area: mobile;
+        grid-template-rows: 94% 5%;
     }
 }
 
+/*
 nav{
     grid-area: nav-desktop;
     background-color:#41463D;
@@ -52,34 +56,6 @@ nav{
     opacity: 0.8;
 }
 
-main {
-    grid-area: main;
-    padding: 1%;
-
-    display: grid;
-    grid-template-rows: auto 1fr;
-    row-gap: 1%;
-
-    header {
-        color:#41463D;
-    }
-
-    #ct-tasks{
-        overflow-y: auto;
-    }
-}
-
-.card {
-    height: 3vh;
-    @media only screen and (min-width: 450px) {
-        height: 6vh;
-    }
-}
-
-#ct-newEntry {
-    padding: 1%;
-    grid-area: entry;
-}
 
 .cardTask {
     height: 95%;
@@ -114,3 +90,4 @@ main {
 }
 
 // telas maiores de 450/450
+*/
