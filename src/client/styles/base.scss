@@ -15,12 +15,26 @@ body{
     grid-template-areas: "mobile";
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+
+    @media only screen and (min-width: 900px) {
+        grid-template-areas: "web-view";
+    }
 }
+
 
 #web-view {
     background: url('../images/wattle-tree-5358904_1920.jpg') no-repeat center;
     background-size: cover;
     color: white;
+    
+    @media only screen and (min-width: 900px) {
+        grid-area: web-view;
+        display:grid;
+        grid-template-areas: "nav-web mobile";
+        grid-template-columns: 15% 1fr;
+        grid-template-rows: 1fr;
+    }
+    
 }
 
 #mobile-view {

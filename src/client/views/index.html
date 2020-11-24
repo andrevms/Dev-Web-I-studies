@@ -5,13 +5,27 @@
     </head>
     <body>
         <main id="web-view">
-            <nav>
-
+            <nav id="menu">
+                <div class="nav-side-cards" onclick="Client.closeNav()">
+                    <div id="closebtn">&times;</div>
+                </div>
+                <div class="nav-side-cards">
+                    <div>About</div>
+                </div>
+                <div class="nav-side-cards">
+                    <div>Services</div>
+                </div>
+                <div class="nav-side-cards">
+                    <div>Clients</div>
+                </div>
+                <div class="nav-side-cards">
+                    <div>Contact</div>
+                </div>
             </nav>
             <article id="mobile-view">
                 <main id="main-content">
                     <hgroup id="content-header">
-                        <button><i class= "fa-plus fa-lg"></i></button>
+                        <button onclick="Client.openNav()"><i class="fas fa-bars fa-lg"></i></button>
                         <h2>Meu Dia</h2>
                         <h4 id="dayDisplay">Segunda-feira</h4>
                     </hgroup>

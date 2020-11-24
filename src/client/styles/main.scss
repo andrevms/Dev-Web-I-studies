@@ -11,6 +11,15 @@
 
     #content-header {
         color: black;
+
+        button {
+            display:block;
+            
+            @media only screen and (min-width: 900px) {
+                display: none;
+            }
+        }
+        
     }
 
     #container-tasks{
@@ -18,9 +27,8 @@
         row-gap: 0.15em;
         
         overflow-y: auto;
-        border: 1px solid red;
+
         /* width */
-        
         &::-webkit-scrollbar {
             width: 0.25em;
         }
