@@ -26,6 +26,7 @@ const newEntry = async (data) => {
 
   //add Event Listener  
   iconClickListener(ctIcon);
+  contextMenuListener(containerCard);
 };
 
 // Function to POST newEntry
@@ -49,32 +50,41 @@ const postNewEntry = async (url = '', data = {}) => {
 };
 
 //Event Listener
-document.addEventListener('DOMContentLoaded', () => {    
+document.addEventListener('DOMContentLoaded', () => {
     const entry = document.getElementById("container-new-entry");
+    const now = new Date;
+    document.getElementById("dayDisplay").innerHTML = now.toDateString();
 
     //Event Listeners Here
  
-    entry.addEventListener("submit", async(e) => {
-      /*
-        Event listener for submit new entry
-      */
-        //prevent page reaload
-        e.preventDefault();
+  entry.addEventListener("submit", async(e) => {
+    /*
+      Event listener for submit new entry
+    */
+    //prevent page reaload
+    e.preventDefault();
             
-        //post newEntry on server
-        postNewEntry('/newEntry', { task: document.getElementById("input-task-entry").value})
-        .then(data => {
-            console.log(data);
-            newEntry(data);
-        })
+    //post newEntry on server
+    postNewEntry('/newEntry', { task: document.getElementById("input-task-entry").value})
+    .then(data => {
+        console.log(data);
+        newEntry(data);
+    })
         
-        //turn back to default value at new Task entries
-        document.getElementById("input-task-entry").value = "";
-    });
+    //turn back to default value at new Task entries
+    document.getElementById("input-task-entry").value = "";
+  });
+  
+  window.addEventListener("click", (e) =>{
+    document.getElementById("context-menu").classList.remove("active");
+  });
+
 });
 
 const deleteCard = async(e) => {
-  console.log(e);
+  console.log("apagando");
+  document.getElementById("container-tasks").removeChild(e);
+
 };
 
 function iconClickListener(el) {
@@ -107,6 +117,22 @@ function iconClickListener(el) {
       //move to beforeend container-task
       document.getElementById('container-tasks').insertAdjacentElement("beforeend", ctCard);
     }
+  });
+}
+
+
+function contextMenuListener(containerCard) {
+  containerCard.addEventListener("contextmenu", (e)=> {
+    e.preventDefault();
+    const contextElement = document.getElementById("context-menu");
+    
+    contextElement.style.top = e.pageY + "px";
+    contextElement.style.left = e.pageX + "px";
+    contextElement.classList.add("active");
+
+    //att if click to remove card clicked
+    //console.log(e);
+    document.getElementById("deleteCard").onclick = () => { deleteCard(e.path[1]); };
   });
 }
 

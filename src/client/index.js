@@ -3,6 +3,7 @@ import './styles/base.scss'
 import './styles/main.scss'
 import './styles/cardTasks.scss'
 import './styles/sideNav.scss'
+import './styles/contextMenu.scss'
 
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
