@@ -82,9 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const deleteCard = async(e) => {
-  console.log("apagando");
   document.getElementById("container-tasks").removeChild(e);
-
 };
 
 function iconClickListener(el) {
