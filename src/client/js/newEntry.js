@@ -16,7 +16,9 @@ const newEntry = async (data) => {
   //adding input checkbox to Card Container
   taskCard.appendChild(ctIcon);
   //adding task name
-  taskCard.appendChild(document.createTextNode(`${data.task}`));
+  const task = document.createElement('span');
+  task.innerHTML = data.taskname;
+  taskCard.appendChild(task);
 
   containerCard.appendChild(taskCard);
 
@@ -63,13 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
     */
     //prevent page reaload
     e.preventDefault();
-            
-    //post newEntry on server
-    postNewEntry('/newEntry', { task: document.getElementById("input-task-entry").value})
-    .then(data => {
-        console.log(data);
+    
+    //Check if if user loged in
+    const logedResponse = await fetch(`/loged`);
+    const isLoged = await logedResponse.json();
+    if(isLoged){
+      //Post new entry 
+      postNewEntry('/newEntry', { "taskname": document.getElementById("input-task-entry").value,
+                               "isFinish": false})
+      .then(async data => {
         newEntry(data);
-    })
+      })
+    }else {
+      alert("Please Login first");
+    }
         
     //turn back to default value at new Task entries
     document.getElementById("input-task-entry").value = "";
@@ -78,19 +87,48 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener("click", (e) =>{
     document.getElementById("context-menu").classList.remove("active");
   });
-
 });
 
-const deleteCard = async(e) => {
-  document.getElementById("container-tasks").removeChild(e);
+const removeCard = async (url = '', data = {}) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  });
+    
+  try {
+    //await server post response ()   
+    const newData = await response.json();
+    return newData;
+  } catch(error) {
+    console.log('error : '+ error);
+  }
 };
+
+const deleteCard = async(e) => {
+  for (const container of e.path){
+    if( container.classList.contains("container-card", "card-Task")  ) {
+      const isFinish = !container.firstChild.firstChild.firstChild.classList.contains('fa-circle');
+      const taskname = container.firstChild.lastChild.innerHTML;
+      removeCard(`/deleteCard?taskname=${taskname}&isFinish=${isFinish}`);
+      document.getElementById("container-tasks").removeChild(container);
+      return;
+    }
+  }
+};
+
 
 function iconClickListener(el) {
   el.addEventListener("click", (e) => {
-    
     //If clicked checkBox --> Move to a ct
     const ctCard = el.parentNode.parentNode; 
     ctCard.remove();
+    //change at json file
+    const taskname = el.parentNode.lastChild.innerHTML;
+    const attIsFinish = fetch(`/attIsFinish?taskname=${taskname}`);
 
     if(el.classList.contains("finish")){
       
@@ -130,8 +168,8 @@ function contextMenuListener(containerCard) {
 
     //att if click to remove card clicked
     //console.log(e);
-    document.getElementById("deleteCard").onclick = () => { deleteCard(e.path[1]); };
+    document.getElementById("deleteCard").onclick = () => { deleteCard(e); };
   });
 }
 
-export { newEntry, postNewEntry, deleteCard }
+export { newEntry, postNewEntry, deleteCard, iconClickListener, contextMenuListener}

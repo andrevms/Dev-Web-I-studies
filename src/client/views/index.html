@@ -9,11 +9,11 @@
                 <div class="nav-side-cards" onclick="Client.closeNav()">
                     <div id="closebtn">&times;</div>
                 </div>
-                <div class="nav-side-cards">
-                    <div>About</div>
+                <div class="nav-side-cards" onclick="Client.openLogin()">
+                    <div>Login</div>
                 </div>
                 <div class="nav-side-cards">
-                    <div>Services</div>
+                    <div >Services</div>
                 </div>
                 <div class="nav-side-cards">
                     <div>Clients</div>
@@ -43,11 +43,40 @@
                 </form>
             </article>
         </main>
+        <!--tasks context menu-->
         <article class="infoCards"></article>
         <section id="context-menu">
             <div id="deleteCard" class="item">
                 <i class="far fa-trash-alt fa-lg"></i>
             </div>
         </section>
+        <!--Login card-->
+        <div id="card">
+            <div onclick="Client.closeLogin()">
+                <div>&times;</div>
+            </div>
+            <div id="card-content">
+              <div id="card-title">
+                <h2>LOGIN</h2>
+                <div class="underline-title"></div>
+              </div>
+              <form id="loginForm"class="form">
+                <label for="user-email" style="padding-top:13px">
+                    &nbsp;Username
+                  </label>
+                <input id="user-email" class="form-content" type="text" name="email" autocomplete="on" required />
+                <div class="form-border"></div>
+                <label for="user-password" style="padding-top:22px">&nbsp;Password
+                  </label>
+                <input id="user-password" class="form-content" type="password" name="password" required />
+                <div class="form-border"></div>
+                <a href="#">
+                  <legend id="forgot-pass">Forgot password?</legend>
+                </a>
+                <input id="submit-btn" type="submit"/>
+                <a href="#" id="signup">Don't have account yet?</a>
+              </form>
+            </div>
+        </div>
     </body>
 </html>
